@@ -5,3 +5,57 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+def seed_users
+  10.times do
+    user_id = 0
+    User.create(
+      name: "test#{user_id}",
+      email: "test#{user_id}@test.com",
+      password: 'password',
+      password_confirmation: 'password'
+    )
+    user_id = user_id + 1
+  end
+end
+
+def seed_categories
+  hobby = ['Arts', 'Sports', 'Sciences', 'Reading',]
+
+  study = ['Arts and Humanities', 'Physical Science and Engineering', 'Math and Logic',
+          'Computer Science', 'Data Science', 'Economics and Finance', 'Business',
+          'Social Sciences', 'Language', 'Other']
+
+  team = ['Study', 'Development', 'Arts and Hobby', 'Other']
+
+  hobby.each do |name|
+    Category.create(branch: 'hobby', name: name)
+  end
+
+  study.each do |name|
+    Category.create(branch: 'study', name: name)
+  end
+
+  team.each do |name|
+    Category.create(branch: 'team', name: name)
+  end
+end
+
+def seed_posts
+  categories = Category.all
+
+  categories.each do |category|
+    5.times do
+      Post.create(
+        title: Faker::Lorem.sentences[0],
+        content: Faker::Lorem.sentences[0],
+        user_id: rand(1..9)
+        category: category.id
+      )
+    end
+  end
+end
+
+seed_users
+seed_categories
+seed_posts
