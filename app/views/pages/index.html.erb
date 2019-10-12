@@ -2,6 +2,8 @@
 <div class="container">
   <div class="row">
     <%= render 'pages/index/side_menu' %>
-    <%= render 'pages/index/main_content' %>
+    <div class="main-content" class="col-sm-9">
+      <%= render @posts %>
+    </div>
   </div>
 </div>
