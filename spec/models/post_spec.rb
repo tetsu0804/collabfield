@@ -15,4 +15,14 @@ RSpec.describe Post, type: :model do
       expect(association).to eq :belongs_to
     end
   end
+
+  # User投稿のスコープ
+  context 'Scopes' do
+    # デフォルトのスコープの順番
+    it 'default_scope orders by created_at' do
+      first_post = create(:post)
+      secound_post = create(:post)
+      expect(Post.all).to eq [secound_post, first_post]
+    end
+  end
 end
