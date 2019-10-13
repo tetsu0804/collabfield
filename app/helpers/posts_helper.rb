@@ -24,6 +24,6 @@ module PostsHelper
 
   # views/posts/_post.html.erb
   def post_format_partial_path
-    current_page?(root_path) ? 'posts/post/home_page' : 'posts/post/branch'
+    current_page?(root_path) ? 'posts/post/home_page' : 'posts/post/branch_page'
   end
 end

@@ -66,7 +66,7 @@ RSpec.describe PostsHelper, type: :helper do
     # current_pageでは無いとき
     it 'returns branch page parital path' do
       allow(helper).to receive(:current_page?).and_return(false)
-      expect(helper.post_format_partial_path).to eq 'posts/post/branch'
+      expect(helper.post_format_partial_path).to eq 'posts/post/branch_page'
     end
   end
 
