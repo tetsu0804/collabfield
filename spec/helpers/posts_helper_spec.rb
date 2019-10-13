@@ -55,4 +55,19 @@ RSpec.describe PostsHelper, type: :helper do
     end
   end
 
+  # views/posts/_post.html.erb
+  context '#post_format_partial_path' do
+    # current_pageの場合
+    it 'returns to current_page partial path' do
+      allow(helper).to receive(:current_page?).and_return(true)
+      expect(helper.post_format_partial_path).to eq 'posts/post/home_page'
+    end
+
+    # current_pageでは無いとき
+    it 'returns branch page parital path' do
+      allow(helper).to receive(:current_page?).and_return(false)
+      expect(helper.post_format_partial_path).to eq 'posts/post/branch'
+    end
+  end
+
 end
