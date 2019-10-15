@@ -29,7 +29,7 @@ class PostsController < ApplicationController
     end
 
     def get_posts
-      PostsForBranchServices.new({
+      PostsForBranchService.new({
         search: params[:search],
         category: params[:category],
         branch: params[:branch]
