@@ -18,8 +18,8 @@ module PostsHelper
   end
 
   # views/posts/_branch.html.erb
-  def no_posts_partial_path
-    @posts.empty? ? 'posts/branch/no_posts' : 'shared/empty_partial'
+  def no_posts_partial_path(posts)
+    posts.empty? ? 'posts/shared/no_posts' : 'shared/empty_partial'
   end
 
   # views/posts/_post.html.erb
