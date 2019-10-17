@@ -55,4 +55,62 @@ RSpec.describe Post, type: :model do
       expect(Post.search('great')[0].id).to eq post.id
     end
   end
+
+  # Post バリデーション
+  context 'Validates' do
+    let(:post) { build(:post) }
+
+    # Post作成成功
+    it 'Post Successfully' do
+      expect(post).to be_valid
+    end
+
+    # category.idが無いためPost失敗
+    it 'is not validate without a category' do
+      post.category_id = nil
+      expect(post).not_to be_valid
+    end
+
+    # titleが無いためpost失敗
+    it 'is not validate without a title' do
+      post.title = nil
+      expect(post).not_to be_valid
+    end
+
+    # user.idが無いためpost失敗
+    it 'is not validate without a user_id' do
+      post.user_id = nil
+      expect(post).not_to be_valid
+    end
+
+    # titleが４文字以内のためpost失敗
+    it 'in not validate with a title, shorter 5' do
+      post.title = "a" * 4
+      expect(post).not_to be_valid
+    end
+
+    # titleが255以上の文字なのでpost失敗
+    it 'is not validate with a title, long 255' do
+      post.title = "a" * 256
+      expect(post).not_to be_valid
+    end
+
+    # contentが無いためpost失敗
+    it 'is not validate without a content' do
+      post.content = nil
+      expect(post).not_to be_valid
+    end
+
+    # contentの文字が20以下なのでpost失敗
+    it 'is not validate with content, short 20' do
+      post.content = "a" * 19
+      expect(post).not_to be_valid
+    end
+
+    # contentの文字が1000以上なのでpost失敗
+    it 'is not validate with content, long 1000' do
+      post.content = "a" * 1001
+      expect(post).not_to be_valid
+    end
+  end
 end
